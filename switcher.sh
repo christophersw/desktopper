@@ -1,5 +1,10 @@
+
 #!/bin/bash
 #Usage: desktopper [FOLDER]
+
+# This is needed to allow this to run from cron
+PID=$(pgrep gnome-session)
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)
 
 FOLDER=$1
 
