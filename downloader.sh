@@ -44,11 +44,4 @@ curl -A "Desktop downloader by /u/$REDDITUSERNAME" https://www.reddit.com/r/$SUB
 NEW=$(ls -1 | wc -l)
 
 echo "Reddit Desktopper Downloaded $(( NEW - OLD)) new images from Reddit /r/$SUBREDDIT."
-
-# Pick ranadom image, set it as background.
-PICTURE=$(find ./ -iregex '.*\.\(tga\|jpg\|gif\|png\|jpeg\)$' | shuf -n 1)
-PICTURELINK=$(readlink -f "$PICTURE")
-OUTPUT=$(gsettings set org.gnome.desktop.background picture-uri file://$PICTURELINK 2>&1) 
-
-echo "Desktop background set to $PICTURE"
-notify-send "Reddit Desktopper" "Downloaded $(( NEW - OLD)) new images from Reddit /r/$SUBREDDIT and desktop updated to $PICTURE" -t 10000
+notify-send "Reddit Desktopper" "Downloaded $(( NEW - OLD)) new images from Reddit /r/$SUBREDDIT" -t 10000
